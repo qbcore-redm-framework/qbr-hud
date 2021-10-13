@@ -1,4 +1,4 @@
-local QBCore = exports['qb-core']:GetCoreObject()
+local QBCore = exports['qbr-core']:GetCoreObject()
 local speed = 0.0
 local seatbeltOn = false
 local cruiseOn = false
@@ -23,7 +23,7 @@ AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
     isLoggedIn = true
 end)
 
-RegisterNetEvent('hud:client:UpdateNeeds') -- Triggered in qb-core
+RegisterNetEvent('hud:client:UpdateNeeds') -- Triggered in qbr-core
 AddEventHandler('hud:client:UpdateNeeds', function(newHunger, newThirst)
     hunger = newHunger
     thirst = newThirst
