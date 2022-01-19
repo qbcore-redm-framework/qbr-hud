@@ -1,9 +1,6 @@
 local QBCore = exports['qbr-core']:GetCoreObject()
 local speed = 0.0
-local seatbeltOn = false
-local cruiseOn = false
 local radarActive = false
-local nos = 0
 local stress = 0
 local hunger = 100
 local thirst = 100
@@ -32,21 +29,6 @@ end)
 RegisterNetEvent('hud:client:UpdateStress') -- Add this event with adding stress elsewhere
 AddEventHandler('hud:client:UpdateStress', function(newStress)
     stress = newStress
-end)
-
-RegisterNetEvent('seatbelt:client:ToggleSeatbelt') -- Triggered in smallresources
-AddEventHandler('seatbelt:client:ToggleSeatbelt', function()
-    seatbeltOn = not seatbeltOn
-end)
-
-RegisterNetEvent('seatbelt:client:ToggleCruise') -- Triggered in smallresources
-AddEventHandler('seatbelt:client:ToggleCruise', function()
-    cruiseOn = not cruiseOn
-end)
-
-RegisterNetEvent('hud:client:UpdateNitrous')
-AddEventHandler('hud:client:UpdateNitrous', function(hasNitro, nitroLevel, bool)
-    nos = nitroLevel
 end)
 
 -- Player HUD
@@ -82,46 +64,6 @@ Citizen.CreateThread(function()
     end
 end)
 
--- Vehicle HUD
-Citizen.CreateThread(function()
-    while true do
-        Wait(500)
-        if LocalPlayer.state['isLoggedIn'] then
-            local player = PlayerPedId()
-            local inVehicle = IsPedInAnyVehicle(player)
-            local vehicle = GetVehiclePedIsIn(player)
-            if inVehicle then
-                radarActive = true
-                local pos = GetEntityCoords(player)
-                local speed = GetEntitySpeed(vehicle) * 2.23694
-                local street1, street2 = GetStreetNameAtCoord(pos.x, pos.y, pos.z, Citizen.ResultAsInteger(), Citizen.ResultAsInteger())
-                local fuel = exports['LegacyFuel']:GetFuel(vehicle)
-                SendNUIMessage({
-                    action = 'car',
-                    show = true,
-                    isPaused = IsPauseMenuActive(),
-                    direction = GetDirectionText(GetEntityHeading(player)),
-                    street1 = GetStreetNameFromHashKey(street1),
-                    street2 = GetStreetNameFromHashKey(street2),
-                    seatbelt = seatbeltOn,
-                    cruise = cruiseOn,
-                    speed = math.ceil(speed),
-                    nos = nos,
-                    fuel = fuel,
-                })
-            else
-                SendNUIMessage({
-                    action = 'car',
-                    show = true,
-                    seatbelt = false,
-                })
-                radarActive = false
-            end
-        else
-        end
-    end
-end)
-
 Citizen.CreateThread(function()
     while true do
         Wait(1)
@@ -132,19 +74,6 @@ Citizen.CreateThread(function()
           end
      end
   end)
-  
-function GetDirectionText(heading)
-    if ((heading >= 0 and heading < 45) or (heading >= 315 and heading < 360)) then
-        return 'North'
-    elseif (heading >= 45 and heading < 135) then
-        return 'South'
-    elseif (heading >=135 and heading < 225) then
-        return 'East'
-    elseif (heading >= 225 and heading < 315) then
-        return 'West'
-    end
-end
-
 -- Money HUD
 
 RegisterNetEvent('hud:client:ShowAccounts')
