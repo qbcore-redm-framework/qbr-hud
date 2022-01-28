@@ -21,13 +21,13 @@
 
 #money {
     text-align: right;
-    color: #28a745;
+    color: green;
 }
 
 #cash,
 #bank,
 #plus {
-    color: #ededed;
+    color: green;
 }
 
 #minus {
