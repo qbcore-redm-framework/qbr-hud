@@ -23,10 +23,10 @@
                 </transition>
             </div>
             <div id="money-change" v-if="showUpdate">
-                <p v-if="plus">🟢&nbsp;<span id="money">+&nbsp;<span id="money">{{formatMoney(amount)}}</span></p>
-                <p v-else-if="minus">🔴&nbsp;<span id="minus">-&nbsp;<span id="money">{{formatMoney(amount)}}</span></p>
+                <p v-if="plus">🟢&nbsp;<span id="plus">+&nbsp;<span id="plus">{{formatMoney(amount)}}</span></p>
+                <p v-else-if="minus">🔴&nbsp;<span id="minus">-&nbsp;<span id="minus">{{formatMoney(amount)}}</span></p>
             </div>
-        </div>
+        </div>minus
         <span>
             <div id="ui-container">
                 <div id="playerHud" v-show="show">>
