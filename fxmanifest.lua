@@ -11,8 +11,8 @@ shared_scripts {
     	'config.lua'
 }
 
-client_script 'client.lua'
-server_script 'server.lua'
+client_script 'client/main.lua'
+server_script 'server/main.lua'
 
 ui_page 'html/index.html'
 
