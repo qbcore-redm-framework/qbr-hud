@@ -38,13 +38,15 @@
 /* Player HUD */
 
 #playerhud {
-    /* display: flex; */
+    display: flex;
     position: absolute;
-    right: 2vw;
-    bottom: 0vw;
+    bottom: 1vw;
     left: 23.1vh;
-    top: 85vh;
 }
+
+.progress {
+    margin-left: 5px!important; /* Change this to space radials */
+ }
 
 
 /* Vehicle HUD */
