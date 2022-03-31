@@ -1,13 +1,13 @@
 
 local ResetStress = false
 
-QBCore.Commands.Add('cash', 'Check Cash Balance', {}, false, function(source, args)
+exports['qbr-core']:AddCommand('cash', 'Check Cash Balance', {}, false, function(source, args)
     local Player = exports['qbr-core']:GetPlayer(source)
     local cashamount = Player.PlayerData.money.cash
 	TriggerClientEvent('hud:client:ShowAccounts', source, 'cash', cashamount)
 end)
 
-QBCore.Commands.Add('bank', 'Check Bank Balance', {}, false, function(source, args)
+exports['qbr-core']:AddCommand('bank', 'Check Bank Balance', {}, false, function(source, args)
     local Player = exports['qbr-core']:GetPlayer(source)
     local bankamount = Player.PlayerData.money.bank
 	TriggerClientEvent('hud:client:ShowAccounts', source, 'bank', bankamount)
