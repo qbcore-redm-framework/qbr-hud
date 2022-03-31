@@ -1,14 +1,14 @@
-local QBCore = exports['qbr-core']:GetCoreObject()
+
 local ResetStress = false
 
 QBCore.Commands.Add('cash', 'Check Cash Balance', {}, false, function(source, args)
-    local Player = QBCore.Functions.GetPlayer(source)
+    local Player = exports['qbr-core']:GetPlayer(source)
     local cashamount = Player.PlayerData.money.cash
 	TriggerClientEvent('hud:client:ShowAccounts', source, 'cash', cashamount)
 end)
 
 QBCore.Commands.Add('bank', 'Check Bank Balance', {}, false, function(source, args)
-    local Player = QBCore.Functions.GetPlayer(source)
+    local Player = exports['qbr-core']:GetPlayer(source)
     local bankamount = Player.PlayerData.money.bank
 	TriggerClientEvent('hud:client:ShowAccounts', source, 'bank', bankamount)
 end)
@@ -16,7 +16,7 @@ end)
 RegisterServerEvent('hud:server:GainStress')
 AddEventHandler('hud:server:GainStress', function(amount)
     local src = source
-    local Player = QBCore.Functions.GetPlayer(src)
+    local Player = exports['qbr-core']:GetPlayer(src)
     local newStress
     if Player ~= nil and Player.PlayerData.job.name ~= 'police' then
         if not ResetStress then
@@ -40,15 +40,15 @@ end)
 RegisterServerEvent('hud:server:GainThirst')
 AddEventHandler('hud:server:GainThirst', function(amount)
     local src = source
-    local Player = QBCore.Functions.GetPlayer(src)
+    local Player = exports['qbr-core']:GetPlayer(src)
     local newThirst
     if Player ~= nil then
             if Player.PlayerData.metadata['thirst'] == nil then
                 Player.PlayerData.metadata['thirst'] = 0
             end
             local thirst = Player.PlayerData.metadata['thirst']
-            if newThirst <= 0 then 
-                newThirst = 0 
+            if newThirst <= 0 then
+                newThirst = 0
             end
             if newThirst > 100 then
                 newThirst = 100
@@ -62,7 +62,7 @@ end)
 RegisterServerEvent('hud:server:RelieveStress')
 AddEventHandler('hud:server:RelieveStress', function(amount)
     local src = source
-    local Player = QBCore.Functions.GetPlayer(src)
+    local Player = exports['qbr-core']:GetPlayer(src)
     local newStress
     if Player ~= nil then
         if not ResetStress then
