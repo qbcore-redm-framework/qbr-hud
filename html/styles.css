@@ -38,14 +38,14 @@
 /* Player HUD */
 
 #playerhud {
-    display: flex;
+    display: inline-block;
     position: absolute;
-    bottom: 1vw;
-    left: 23.1vh;
+    bottom: 5vw;
+    left: 1.1vh;
 }
 
 .progress {
-    margin-left: 5px!important; /* Change this to space radials */
+    margin-top: 5px!important; 
  }
 
 
