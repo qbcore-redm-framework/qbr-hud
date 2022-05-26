@@ -161,6 +161,11 @@ const playerHud = {
             } else {
                 this.showStress = true;
             }
+			if (data.voice == 1) {
+				this.talkingColor = "#FF0000";
+			} else {
+				this.talkingColor = "#FFFFFF";
+			}
         }
     }
 }

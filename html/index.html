@@ -31,8 +31,8 @@
             <div id="ui-container">
                 <div id="playerHud" v-show="show">>
                     <div v-if="showVoice">
-                        <q-circular-progress show-value :value="voice" size="45px" :thickness="0.2" color="white" track-color="red-9" center-color="black-8" :min="0" :max="5">
-                            <q-icon name="fas fa-microphone" size="25px" color="white" />
+                        <q-circular-progress show-value :value="voice" size="45px" :thickness="0.2" color="white" track-color="black-9" center-color="black-8" :min="1" :max="1">
+						<q-icon name="fas fa-microphone" size="25px" :style="{color: talkingColor}" />
                     </div>
                     <!-- <div v-if="showHealth">
                         <q-circular-progress show-value :value="health" size="45px" :thickness="0.2" color="white" track-color="black-9" center-color="black-8">
