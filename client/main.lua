@@ -44,11 +44,9 @@ Citizen.CreateThread(function()
             local show = true
             local player = PlayerPedId()
             local playerid = PlayerId()
-            --local talking = Citizen.InvokeNative(0xEF6F2A35FAAF2ED7, playerid)
-            local talking = SetPlayerTalkingOverride(PlayerId())
             if IsPauseMenuActive() then
                 show = false
-            end
+            end	
             SendNUIMessage({
                 action = 'hudtick',
                 show = show,
@@ -57,8 +55,7 @@ Citizen.CreateThread(function()
                 thirst = thirst,
                 hunger = hunger,
                 stress = stress,
-                voice = Citizen.InvokeNative(0x2F82CAB262C8AE26, playerid),
-                talking = talking,
+				voice = Citizen.InvokeNative(0x33EEF97F, playerid)
             })
         else
             SendNUIMessage({
