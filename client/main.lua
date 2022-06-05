@@ -73,9 +73,26 @@ Citizen.CreateThread(function()
     while true do
         Wait(1)
           if IsPedOnMount(PlayerPedId()) or IsPedOnVehicle(PlayerPedId()) then
-            SetMinimapType(1)
+            if Config.MounttMinimap then
+                if Config.MountCompass then
+                    SetMinimapType(3)
+                else
+                    SetMinimapType(1)
+                end
+            else
+                SetMinimapType(0)
+            end
           else
-              SetMinimapType(3)
+            if not Config.OnFootMinimap then
+              SetMinimapType(0)
+              Wait(2000)
+            else
+                if Config.OnFootCompass then
+                    SetMinimapType(3)
+                else
+                    SetMinimapType(1)
+                end
+            end
           end
      end
   end)
