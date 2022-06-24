@@ -29,16 +29,14 @@
         </div>
         <span>
             <div id="ui-container">
-                <div id="playerHud" v-show="show">>
+                <div id="playerHud" v-show="show">
+                    <transition name="fade">
                     <div v-if="showVoice">
-                        <q-circular-progress show-value :value="voice" size="45px" :thickness="0.2" color="white" track-color="black-9" center-color="black-8" :min="1" :max="1">
-						<q-icon name="fas fa-microphone" size="25px" :style="{color: talkingColor}" />
+                        <q-circular-progress show-value :value="voice" size="50px" :thickness="0.22" color="white" track-color="black-9" center-color="gray-10" :min="0" :max="100">
+                        <q-circular-progress show-value :value="voice" size="50px" :thickness="0.24" :style="{color: talkingColor}" :min="0" :max="13.5" center-color="grey-10">
+						<q-icon name="fas fa-microphone" size="19.5px" :style="{color: talkingColor}" />
                     </div>
-                    <!-- <div v-if="showHealth">
-                        <q-circular-progress show-value :value="health" size="45px" :thickness="0.2" color="white" track-color="black-9" center-color="black-8">
-                            <q-icon name="fas fa-heart" size="25px" color="white" />
-                    </div> -->
-    
+					</transition>
                     <div v-if="showHunger">
                         <q-circular-progress class="progress" show-value :value="hunger" size="45px" :thickness="0.2" color="white" track-color="black-9" center-color="black-8">
                             <q-icon name="fas fa-utensils" size="25px" color="white" />
