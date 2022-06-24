@@ -46,7 +46,12 @@ Citizen.CreateThread(function()
             local playerid = PlayerId()
             if IsPauseMenuActive() then
                 show = false
-            end	
+            end
+            local voice = 0
+            local talking = Citizen.InvokeNative(0x33EEF97F, playerid)
+            if LocalPlayer.state['proximity'] then
+                voice = LocalPlayer.state['proximity'].distance
+            end
             SendNUIMessage({
                 action = 'hudtick',
                 show = show,
@@ -55,7 +60,8 @@ Citizen.CreateThread(function()
                 thirst = thirst,
                 hunger = hunger,
                 stress = stress,
-				voice = Citizen.InvokeNative(0x33EEF97F, playerid)
+				talking = talking,
+				voice = voice,
             })
         else
             SendNUIMessage({

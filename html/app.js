@@ -107,12 +107,14 @@ const playerHud = {
             stress: 0,
             voice: 0,
             show: false,
+			talking: false,
             showVoice: true,
             showHealth: true,
             showArmor: true,
             showHunger: true,
             showThirst: true,
-            showStress: true
+            showStress: true,
+			talkingColor: "#FFFFFF",
         }
     },
     destroyed() {
@@ -136,6 +138,7 @@ const playerHud = {
             this.thirst = data.thirst;
             this.stress = data.stress;
             this.voice = data.voice;
+			this.talking = data.talking;
             if (data.health >= 100) {
                 this.showHealth = false;
             } else {
@@ -161,7 +164,7 @@ const playerHud = {
             } else {
                 this.showStress = true;
             }
-			if (data.voice == 1) {
+			if (data.talking) {
 				this.talkingColor = "#FF0000";
 			} else {
 				this.talkingColor = "#FFFFFF";
