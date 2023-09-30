@@ -7,7 +7,7 @@ local bankAmount = 0
 local pid = PlayerId()
 local isLoggedIn = false
 local sid = GetPlayerServerId(pid)
-
+local QBConfig = exports["qbr-core"]:GetConfig()
 ----------------------------------------------------------------------------
 ---- FUNCTIONS
 ----------------------------------------------------------------------------
@@ -92,17 +92,29 @@ CreateThread(function()
             local player = PlayerPedId()
             if IsPauseMenuActive() then
                 show = false
-            end	
-            SendNUIMessage({
-                action = 'hudtick',
-                show = show,
-                health = GetEntityHealth(player) / 3, -- health in red dead is 300 so dividing by 3 makes it 100 here
-                armor = Citizen.InvokeNative(0x2CE311A7, player),
-                thirst = thirst,
-                hunger = hunger,
-                stress = stress,
-				voice = Citizen.InvokeNative(0x33EEF97F, pid)
-            })
+            end
+            if QBConfig.Hud.HidePlayersCore then -- ICON_STAMINA, ICON_DEADEYE, ICON_HEALTH disabled. Then we can add custom stamina and health icon status
+                SendNUIMessage({
+                    action = 'hudtick',
+                    show = show,
+                    health = GetEntityHealth(player) / 3, -- health in red dead is 300 so dividing by 3 makes it 100 here
+                    armor = Citizen.InvokeNative(0x2CE311A7, player),
+                    thirst = thirst,
+                    hunger = hunger,
+                    stress = stress,
+                    voice = Citizen.InvokeNative(0x33EEF97F, pid)
+                })
+            else
+                SendNUIMessage({
+                    action = 'hudtick',
+                    show = show,
+                    armor = Citizen.InvokeNative(0x2CE311A7, player),
+                    thirst = thirst,
+                    hunger = hunger,
+                    stress = stress,
+                    voice = Citizen.InvokeNative(0x33EEF97F, pid)
+                })
+            end
         else
             SendNUIMessage({action = 'hudtick', show = false})
         end
