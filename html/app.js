@@ -136,27 +136,27 @@ const playerHud = {
             this.thirst = data.thirst;
             this.stress = data.stress;
             this.voice = data.voice;
-            if (data.health >= 100) {
+            if (data.health === undefined || data.health >= 95) {
                 this.showHealth = false;
             } else {
                 this.showHealth = true;
             }
-            if (data.armor <= 0) {
+            if (data.armor === undefined || data.armor <= 0) {
                 this.showArmor = false;
             } else {
                 this.showArmor = true;
             }
-            if (data.hunger >= 95) {
+            if (data.hunger === undefined || data.hunger >= 95) {
                 this.showHunger = false;
             } else {
                 this.showHunger = true;
             }
-            if (data.thirst >= 95) {
+            if (data.thirst === undefined || data.thirst >= 95) {
                 this.showThirst = false;
             } else {
                 this.showThirst = true;
             }
-            if (data.stress <= 0) {
+            if (data.stress === undefined || data.stress <= 0) {
                 this.showStress = false;
             } else {
                 this.showStress = true;
