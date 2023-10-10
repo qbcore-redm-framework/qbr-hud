@@ -29,10 +29,11 @@
         </div>
         <span>
             <div id="ui-container">
-                <div id="playerHud" v-show="show">>
+                <div id="playerHud" v-show="show">
                     <div v-if="showVoice">
                         <q-circular-progress show-value :value="voice" size="50px" :thickness="0.22" color="white" track-color="black-9" center-color="gray-10" :min="1" :max="1">
-						<q-icon name="fas fa-microphone" size="19px" :style="{color: talkingColor}" />
+			    <q-icon name="fas fa-microphone" size="19px" :style="{color: talkingColor}" />
+		    </div>
                     <div v-if="showHealth">
                         <q-circular-progress show-value :value="health" size="50px" :thickness="0.22" color="brown" track-color="black-9" center-color="gray-10">
                             <q-icon name="fas fa-heart" size="19px" color="white" />
